@@ -1,9 +1,6 @@
 package com.salesianos.dam.gestion_peliculas.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -13,6 +10,7 @@ import java.util.List;
 @Entity
 public class Pelicula {
 
+    @Id
     @GeneratedValue
     private Long id;
 
@@ -25,4 +23,5 @@ public class Pelicula {
 
     @ManyToMany
     private List<Actor> actores;
+
 }

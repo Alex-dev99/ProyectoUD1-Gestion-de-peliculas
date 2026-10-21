@@ -2,6 +2,7 @@ package com.salesianos.dam.gestion_peliculas.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 
@@ -9,6 +10,7 @@ import lombok.Data;
 @Entity
 public class Director {
 
+    @Id
     @GeneratedValue
     private Long id;
 
