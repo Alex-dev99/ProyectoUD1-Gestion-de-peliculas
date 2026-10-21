@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -22,6 +23,6 @@ public class Pelicula {
     private Director director;
 
     @ManyToMany
-    private List<Actor> actores;
+    private Set<Actor> actores;
 
 }
