@@ -28,7 +28,7 @@ public class DirectorService {
 
     //por ahora son opcionals por si acaso no da tiempo ha hacer excepciones
 
-    public Optional<Director> getProductById(Long id) {
+    public Optional<Director> getDirectorById(Long id) {
         return directorRepository.findById(id);
     }
 
@@ -42,7 +42,7 @@ public class DirectorService {
                         });
     }
 
-    public void deleteProduct(Director d) {
+    public void deleteDirector(Director d) {
         directorRepository.delete(d);
     }
 

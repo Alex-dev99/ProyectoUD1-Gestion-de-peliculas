@@ -22,15 +22,15 @@ public class DirectorController {
     private final DirectorService directorService;
 
     @PostMapping
-    public ResponseEntity<DirectorResponseDTO> addProduct(@RequestBody EditDirectorDTO product) {
+    public ResponseEntity<DirectorResponseDTO> addDirector(@RequestBody EditDirectorDTO director) {
 
         return ResponseEntity.status(201)
-                .body(DirectorResponseDTO.of(directorService.addDirector(product)));
+                .body(DirectorResponseDTO.of(directorService.addDirector(director)));
 
     }
 
     @GetMapping
-    public ResponseEntity<List<DirectorResponseDTO>> getAllProducts() {
+    public ResponseEntity<List<DirectorResponseDTO>> getAllDirectores() {
 
         List<Director> result = directorService.getAllDirectores();
         return ResponseEntity.ok(
@@ -39,13 +39,28 @@ public class DirectorController {
                         .map(DirectorResponseDTO::of)
                         .toList());
     }
-/*
+
     @GetMapping("/{id}")
     public ResponseEntity<DirectorResponseDTO> getDirectorById(@PathVariable @Min(value = 1) Long id) {
 
-        return ResponseEntity.ok(DirectorResponseDTO.of(directorService.getProductById(id)));
+        return ResponseEntity.ok(DirectorResponseDTO.of(directorService.getDirectorById(id)));
 
     }
-*/
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DirectorResponseDTO> updateDirector(
+            @PathVariable Long id,
+            @RequestBody EditDirectorDTO director) {
+
+        return ResponseEntity.ok(
+                DirectorResponseDTO.of(DirectorService.updateDirector(id, director)));
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDirector(@PathVariable Long id) {
+        DirectorService.deleteDirector(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
