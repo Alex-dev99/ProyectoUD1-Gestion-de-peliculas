@@ -32,7 +32,7 @@ public class Pelicula {
 
     @ManyToOne
     @NotNull(message = "El ID del director no puede estar vacio")
-    private long directorId;
+    private Long directorId;
 
     @ManyToMany
     private Set<Actor> actores;

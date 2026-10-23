@@ -4,7 +4,7 @@ import com.salesianos.dam.gestion_peliculas.model.Actor;
 
 public record EditActorDTO(
 
-        String nombre,
+        String nombre
 ) {
 
     public Actor to(){
