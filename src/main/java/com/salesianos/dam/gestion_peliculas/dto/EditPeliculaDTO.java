@@ -1,6 +1,11 @@
 package com.salesianos.dam.gestion_peliculas.dto;
 
+import com.salesianos.dam.gestion_peliculas.model.Actor;
+import com.salesianos.dam.gestion_peliculas.model.Director;
 import com.salesianos.dam.gestion_peliculas.model.Pelicula;
+
+import java.time.LocalDate;
+import java.util.Set;
 
 public record EditPeliculaDTO(
 
@@ -14,7 +19,6 @@ public record EditPeliculaDTO(
 
     public Pelicula to(){
         return Pelicula.builder()
-                .nombre(nombre)
                 .titulo(titulo)
                 .fechaEstreno(fechaEstreno)
                 .director(director)

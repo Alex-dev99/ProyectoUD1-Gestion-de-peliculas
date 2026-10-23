@@ -1,6 +1,7 @@
 package com.salesianos.dam.gestion_peliculas.service;
 
 import com.salesianos.dam.gestion_peliculas.dto.EditDirectorDTO;
+import com.salesianos.dam.gestion_peliculas.error.notFound.DirectorNoEncontradoException;
 import com.salesianos.dam.gestion_peliculas.model.Director;
 import com.salesianos.dam.gestion_peliculas.repository.DirectorRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,24 +27,23 @@ public class DirectorService {
         return resultado;
     }
 
-    //por ahora son opcionals por si acaso no da tiempo ha hacer excepciones
 
-    public Optional<Director> getDirectorById(Long id) {
-        return directorRepository.findById(id);
+    public Director getDirectorById(Long id) {
+        return directorRepository.findById(id).orElseThrow(() -> new DirectorNoEncontradoException(id));
     }
 
-    public Optional<Director> updateDirector(Long id, EditDirectorDTO editDirectorDTO) {
+    public Director updateDirector(Long id, EditDirectorDTO editDirectorDTO) {
         return directorRepository.findById(id)
                 .map( d -> {
 
                             d.setNombre(editDirectorDTO.nombre());
                             d.setAnioNacimiento(editDirectorDTO.anioNacimiento());
                             return directorRepository.save(d);
-                        });
+                        }).orElseThrow(() -> new DirectorNoEncontradoException(id));
     }
 
-    public void deleteDirector(Director d) {
-        directorRepository.delete(d);
+    public void deleteDirector(Long id) {
+        directorRepository.deleteById(id);
     }
 
 

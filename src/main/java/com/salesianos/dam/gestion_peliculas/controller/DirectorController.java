@@ -53,13 +53,13 @@ public class DirectorController {
             @RequestBody EditDirectorDTO director) {
 
         return ResponseEntity.ok(
-                DirectorResponseDTO.of(DirectorService.updateDirector(id, director)));
+                DirectorResponseDTO.of(directorService.updateDirector(id, director)));
 
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDirector(@PathVariable Long id) {
-        DirectorService.deleteDirector(id);
+        directorService.deleteDirector(id);
         return ResponseEntity.noContent().build();
     }
 

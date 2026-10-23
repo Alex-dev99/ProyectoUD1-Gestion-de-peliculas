@@ -32,7 +32,7 @@ public class ActorController {
     @GetMapping
     public ResponseEntity<List<ActorSimpleDTO>> getAllActores() {
 
-        List<Actor> result = ActorService.getAllActores();
+        List<Actor> result = actorService.getAllActores();
         return ResponseEntity.ok(
                 result
                         .stream()
