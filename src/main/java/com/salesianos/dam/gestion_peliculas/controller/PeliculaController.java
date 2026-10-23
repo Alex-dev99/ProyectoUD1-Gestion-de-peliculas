@@ -5,6 +5,7 @@ import com.salesianos.dam.gestion_peliculas.dto.PeliculaResponseDTO;
 import com.salesianos.dam.gestion_peliculas.model.Pelicula;
 import com.salesianos.dam.gestion_peliculas.repository.PeliculaRepository;
 import com.salesianos.dam.gestion_peliculas.service.PeliculaService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +22,14 @@ public class PeliculaController {
     private final PeliculaService peliculaService;
 
     @PostMapping
-    public ResponseEntity<PeliculaResponseDTO> addPeliculas(@RequestBody EditPeliculaDTO pelicula) {
+    public ResponseEntity<PeliculaResponseDTO> addPeliculas(@Valid @RequestBody EditPeliculaDTO pelicula) {
 
         return ResponseEntity.status(201)
                 .body(PeliculaResponseDTO.of(peliculaService.addPelicula(pelicula)));
 
     }
     @PostMapping("/{peliculaId}/actores/{actorId}")
-    public ResponseEntity<PeliculaResponseDTO> addActor(@RequestBody EditPeliculaDTO pelicula, Long actorId) {
+    public ResponseEntity<PeliculaResponseDTO> addActor(@Valid @RequestBody EditPeliculaDTO pelicula, Long actorId) {
 
         return ResponseEntity.status(201)
                 .body(PeliculaResponseDTO.of(peliculaService.addActor(actorId, pelicula)));
@@ -56,7 +57,7 @@ public class PeliculaController {
     @PutMapping("/{id}")
     public ResponseEntity<PeliculaResponseDTO> updatePelicula(
             @PathVariable Long id,
-            @RequestBody EditPeliculaDTO pelicula) {
+            @Valid @RequestBody EditPeliculaDTO pelicula) {
 
         return ResponseEntity.ok(
                 PeliculaResponseDTO.of(peliculaService.updatePelicula(id, pelicula)));

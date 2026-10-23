@@ -13,7 +13,7 @@ public record EditPeliculaDTO(
         String titulo,
         String genero,
         LocalDate fechaEstreno,
-        Director director,
+        Long directorId,
         Set<Actor> actores
 ) {
 
@@ -21,7 +21,7 @@ public record EditPeliculaDTO(
         return Pelicula.builder()
                 .titulo(titulo)
                 .fechaEstreno(fechaEstreno)
-                .director(director)
+                .directorId(directorId)
                 .actores(actores)
                 .build();
     }

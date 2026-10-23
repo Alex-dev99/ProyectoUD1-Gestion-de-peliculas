@@ -1,14 +1,10 @@
 package com.salesianos.dam.gestion_peliculas.service;
 
 import com.salesianos.dam.gestion_peliculas.dto.EditPeliculaDTO;
-import com.salesianos.dam.gestion_peliculas.error.notFound.ActorNoEncontradoException;
-import com.salesianos.dam.gestion_peliculas.error.notFound.DirectorNoEncontradoException;
 import com.salesianos.dam.gestion_peliculas.error.notFound.PeliculaNoEncontradaException;
 import com.salesianos.dam.gestion_peliculas.model.Actor;
 import com.salesianos.dam.gestion_peliculas.model.Director;
 import com.salesianos.dam.gestion_peliculas.model.Pelicula;
-import com.salesianos.dam.gestion_peliculas.repository.ActorRepository;
-import com.salesianos.dam.gestion_peliculas.repository.DirectorRepository;
 import com.salesianos.dam.gestion_peliculas.repository.PeliculaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,7 +31,7 @@ public class PeliculaService {
     }
 
     public Pelicula addPelicula(EditPeliculaDTO editPeliculaDTO){
-        getDirectorById(editPeliculaDTO.director().getId());
+        getDirectorById(editPeliculaDTO.directorId());
         return peliculaRepository.save(editPeliculaDTO.to());
     }
 
@@ -66,7 +62,7 @@ public class PeliculaService {
                     p.setTitulo(editPeliculaDTO.titulo());
                     p.setFechaEstreno(editPeliculaDTO.fechaEstreno());
                     p.setGenero(editPeliculaDTO.genero());
-                    p.setDirector(editPeliculaDTO.director());
+                    p.setDirectorId(editPeliculaDTO.directorId());
                     p.setActores(editPeliculaDTO.actores());
                     return peliculaRepository.save(p);
                 })

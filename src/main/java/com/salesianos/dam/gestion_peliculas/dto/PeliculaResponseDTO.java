@@ -13,7 +13,7 @@ public record PeliculaResponseDTO(
         String titulo,
         String genero,
         LocalDate fechaEstreno,
-        Director director,
+        Long directorId,
         Set<Actor> actores
 
         ) {
@@ -25,7 +25,7 @@ public record PeliculaResponseDTO(
                         p.getTitulo(),
                         p.getGenero(),
                         p.getFechaEstreno(),
-                        p.getDirector(),
+                        p.getDirectorId(),
                         p.getActores()
 
                 );

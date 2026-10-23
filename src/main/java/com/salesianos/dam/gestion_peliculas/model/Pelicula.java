@@ -1,6 +1,8 @@
 package com.salesianos.dam.gestion_peliculas.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,11 +24,15 @@ public class Pelicula {
     private Long id;
 
     private String titulo;
+
+    @NotBlank(message = "El genero no puede estar vacio")
     private String genero;
+    @NotNull(message = "La fecha de estreno es obligatoria")
     private LocalDate fechaEstreno;
 
     @ManyToOne
-    private Director director;
+    @NotNull(message = "El ID del director no puede estar vacio")
+    private long directorId;
 
     @ManyToMany
     private Set<Actor> actores;
