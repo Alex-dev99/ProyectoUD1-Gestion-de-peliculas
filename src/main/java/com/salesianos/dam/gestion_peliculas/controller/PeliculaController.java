@@ -27,6 +27,13 @@ public class PeliculaController {
                 .body(PeliculaResponseDTO.of(peliculaService.addPelicula(pelicula)));
 
     }
+    @PostMapping("/{peliculaId}/actores/{actorId}")
+    public ResponseEntity<PeliculaResponseDTO> addActor(@RequestBody EditPeliculaDTO pelicula, Long actorId) {
+
+        return ResponseEntity.status(201)
+                .body(PeliculaResponseDTO.of(peliculaService.addActor(actorId, pelicula)));
+
+    }
 
     @GetMapping
     public ResponseEntity<List<PeliculaResponseDTO>> getAllPeliculas() {
