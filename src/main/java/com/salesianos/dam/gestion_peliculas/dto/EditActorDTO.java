@@ -4,6 +4,7 @@ import com.salesianos.dam.gestion_peliculas.model.Actor;
 
 public record EditActorDTO(
 
+        @NotBlank(message = "El nombre no puede estar vacio")
         String nombre
 ) {
 
