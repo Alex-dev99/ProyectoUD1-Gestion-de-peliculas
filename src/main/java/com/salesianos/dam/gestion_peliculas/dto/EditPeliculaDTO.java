@@ -9,20 +9,25 @@ import java.util.Set;
 
 public record EditPeliculaDTO(
 
-        Long id,
+        @NotBlank(message = "El titulo no puede estar vacio")
         String titulo,
+
+        @NotBlank(message = "El genero no puede estar vacio")
         String genero,
+
+        @NotNull(message = "La fecha de estreno es obligatoria")
         LocalDate fechaEstreno,
-        Long directorId,
-        Set<Actor> actores
+
+        @NotNull(message = "El ID del director no puede estar vacio")
+        Long directorId
 ) {
 
-    public Pelicula to(){
+    public Pelicula to(Director director){
         return Pelicula.builder()
                 .titulo(titulo)
+                .genero(genero)
                 .fechaEstreno(fechaEstreno)
                 .directorId(directorId)
-                .actores(actores)
                 .build();
     }
 

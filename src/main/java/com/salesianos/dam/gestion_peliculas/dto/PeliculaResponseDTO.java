@@ -13,8 +13,8 @@ public record PeliculaResponseDTO(
         String titulo,
         String genero,
         LocalDate fechaEstreno,
-        Long directorId,
-        Set<Actor> actores
+        DirectorSimpleDTO director,
+        List<ActorSimpleDTO> actores
 
         ) {
 
@@ -25,8 +25,10 @@ public record PeliculaResponseDTO(
                         p.getTitulo(),
                         p.getGenero(),
                         p.getFechaEstreno(),
-                        p.getDirectorId(),
-                        p.getActores()
+                        DirectorSimpleDTO.of(p.getDirector()),
+                        p.getActores().stream()
+                                .map(ActorSimpleDTO::of)
+                                .toList()
 
                 );
         }

@@ -23,6 +23,8 @@ public class Pelicula {
     @GeneratedValue
     private Long id;
 
+    @NotBlank(message = "El titulo no puede estar vacio")
+    @Column(unique = true)
     private String titulo;
 
     @NotBlank(message = "El genero no puede estar vacio")
@@ -30,11 +32,13 @@ public class Pelicula {
     @NotNull(message = "La fecha de estreno es obligatoria")
     private LocalDate fechaEstreno;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "director_id")
     @NotNull(message = "El ID del director no puede estar vacio")
-    private Long directorId;
+    private Director director;
 
     @ManyToMany
-    private Set<Actor> actores;
+    @Builder.Default
+    private Set<Actor> actores = new HashSet<>();
 
 }

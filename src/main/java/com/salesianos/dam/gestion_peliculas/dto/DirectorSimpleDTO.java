@@ -6,4 +6,9 @@ public record DirectorSimpleDTO(
         String nombre
 
 ) {
+
+    public static DirectorSimpleDTO of(Director d) {
+        return new DirectorSimpleDTO(d.getId(), d.getNombre());
+    }
+
 }
