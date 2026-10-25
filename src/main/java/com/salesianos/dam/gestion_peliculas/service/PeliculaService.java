@@ -33,7 +33,7 @@ public class PeliculaService {
         if (peliculaRepository.existsByTitulo(editPeliculaDTO.titulo())) {
             throw new PeliculaYaExisteException(editPeliculaDTO.titulo());
         }
-        Director director = directorService.getDirectorById(editPeliculaDTO.directorId());
+        Director director = getDirectorById(editPeliculaDTO.directorId());
         return peliculaRepository.save(editPeliculaDTO.to(director));
     }
 
@@ -49,7 +49,7 @@ public class PeliculaService {
     public Pelicula updatePelicula(Long id, EditPeliculaDTO editPeliculaDTO) {
         return peliculaRepository.findById(id)
                 .map(p -> {
-                    Director director = directorService.getDirectorById(editPeliculaDTO.directorId());
+                    Director director = getDirectorById(editPeliculaDTO.directorId());
                     p.setTitulo(editPeliculaDTO.titulo());
                     p.setGenero(editPeliculaDTO.genero());
                     p.setFechaEstreno(editPeliculaDTO.fechaEstreno());
@@ -65,7 +65,7 @@ public class PeliculaService {
 
     public Pelicula addActor(Long peliculaId, Long actorId) {
         Pelicula pelicula = getPeliculaById(peliculaId);
-        Actor actor = actorService.getActorById(actorId);
+        Actor actor = getActorById(actorId);
 
         boolean yaAsignado = pelicula.getActores().stream()
                 .anyMatch(a -> a.getId().equals(actorId));

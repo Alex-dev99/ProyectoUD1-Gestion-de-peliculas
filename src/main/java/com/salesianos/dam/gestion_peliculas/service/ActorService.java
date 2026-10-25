@@ -21,7 +21,7 @@ public class ActorService {
     }
 
     public Actor getActorById(Long id) {
-        return actorRepository.findById(id).orElseThrow(() -> new DirectorNoEncontradoException(id));
+        return actorRepository.findById(id).orElseThrow(() -> new ActorNoEncontradoException(id));
     }
 
     public List<Actor> getAllActores() {

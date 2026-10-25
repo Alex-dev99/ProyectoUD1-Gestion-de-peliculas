@@ -12,7 +12,7 @@ public record PeliculaRequestDTO(
          @NotBlank(message = "El genero no puede estar vacio")
          String genero,
          LocalDate fechaEstreno,
-         @NotBlank(message = "El id del director no puede estar vacio")
+         @NotNull(message = "El id del director no puede estar vacio")
          Long directorId
 
 ) {

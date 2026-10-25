@@ -27,7 +27,7 @@ public record EditPeliculaDTO(
                 .titulo(titulo)
                 .genero(genero)
                 .fechaEstreno(fechaEstreno)
-                .directorId(directorId)
+                .director(director)
                 .build();
     }
 
