@@ -16,42 +16,43 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/peliculas")
+@Validated
 public class PeliculaController {
 
-    private final PeliculaRepository peliculaRepository;
     private final PeliculaService peliculaService;
 
     @PostMapping
-    public ResponseEntity<PeliculaResponseDTO> addPeliculas(@Valid @RequestBody EditPeliculaDTO pelicula) {
+    public ResponseEntity<PeliculaResponseDTO> addPelicula(
+            @Valid @RequestBody EditPeliculaDTO pelicula) {
 
         return ResponseEntity.status(201)
                 .body(PeliculaResponseDTO.of(peliculaService.addPelicula(pelicula)));
-
     }
+
     @PostMapping("/{peliculaId}/actores/{actorId}")
-    public ResponseEntity<PeliculaResponseDTO> addActor(@Valid @RequestBody EditPeliculaDTO pelicula, Long actorId) {
+    public ResponseEntity<PeliculaResponseDTO> addActor(
+            @PathVariable @Min(value = 1) Long peliculaId,
+            @PathVariable @Min(value = 1) Long actorId) {
 
         return ResponseEntity.status(201)
-                .body(PeliculaResponseDTO.of(peliculaService.addActor(actorId, pelicula)));
-
+                .body(PeliculaResponseDTO.of(peliculaService.addActor(peliculaId, actorId)));
     }
 
     @GetMapping
     public ResponseEntity<List<PeliculaResponseDTO>> getAllPeliculas() {
-
-        List<Pelicula> result = peliculaService.getAllPeliculas();
         return ResponseEntity.ok(
-                result
+                peliculaService.getAllPeliculas()
                         .stream()
                         .map(PeliculaResponseDTO::of)
                         .toList());
     }
 
     @GetMapping("/{peliculaId}")
-    public ResponseEntity<PeliculaResponseDTO> getPeliculasById(@PathVariable @Min(value = 1) Long id) {
+    public ResponseEntity<PeliculaResponseDTO> getPeliculaById(
+            @PathVariable @Min(value = 1) Long peliculaId) {
 
-        return ResponseEntity.ok(PeliculaResponseDTO.of(peliculaService.getPeliculaById(id)));
-
+        return ResponseEntity.ok(
+                PeliculaResponseDTO.of(peliculaService.getPeliculaById(peliculaId)));
     }
 
     @PutMapping("/{id}")
@@ -61,7 +62,6 @@ public class PeliculaController {
 
         return ResponseEntity.ok(
                 PeliculaResponseDTO.of(peliculaService.updatePelicula(id, pelicula)));
-
     }
 
     @DeleteMapping("/{id}")

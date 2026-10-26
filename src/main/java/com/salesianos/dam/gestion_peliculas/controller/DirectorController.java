@@ -17,9 +17,9 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/directores")
+@Validated
 public class DirectorController {
 
-    private final DirectorRepository directorRepository;
     private final DirectorService directorService;
 
     @PostMapping
