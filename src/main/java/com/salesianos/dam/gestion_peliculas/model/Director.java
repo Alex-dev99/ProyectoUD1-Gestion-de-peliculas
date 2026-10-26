@@ -1,11 +1,8 @@
 package com.salesianos.dam.gestion_peliculas.model;
 
-import com.salesianos.dam.gestion_peliculas.validation.DirectorMayorDeEdad;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +19,6 @@ public class Director {
     @GeneratedValue
     private Long id;
 
-    @NotBlank(message = "El nombre no puede estar vacio")
     private String nombre;
-    @DirectorMayorDeEdad
     private Integer anioNacimiento;
-
 }
