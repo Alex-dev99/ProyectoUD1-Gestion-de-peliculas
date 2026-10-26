@@ -19,27 +19,26 @@ import java.util.List;
 @RequestMapping("/api/v1/actores")
 public class ActorController {
 
-    private final ActorRepository actorRepository;
     private final ActorService actorService;
 
+    @Operation(description = "Crea un actor")
+    @ApiResponse(responseCode = "201", description = "Actor creado")
+    @ApiResponse(responseCode = "400", description = "Datos invalidos")
     @PostMapping
-    public ResponseEntity<ActorSimpleDTO> addActor(@Valid @RequestBody EditActorDTO actor) {
-
+    public ResponseEntity<ActorSimpleDTO> addActor(
+            @Valid @RequestBody EditActorDTO actor) {
         return ResponseEntity.status(201)
                 .body(ActorSimpleDTO.of(actorService.addActor(actor)));
-
     }
 
+    @Operation(description = "Lista todos los actores")
+    @ApiResponse(responseCode = "200", description = "Lista devuelta")
     @GetMapping
     public ResponseEntity<List<ActorSimpleDTO>> getAllActores() {
-
-        List<Actor> result = actorService.getAllActores();
         return ResponseEntity.ok(
-                result
+                actorService.getAllActores()
                         .stream()
                         .map(ActorSimpleDTO::of)
                         .toList());
     }
-
-
 }
