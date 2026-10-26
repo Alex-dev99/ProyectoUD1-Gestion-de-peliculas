@@ -3,11 +3,10 @@ package com.salesianos.dam.gestion_peliculas.controller;
 
 import com.salesianos.dam.gestion_peliculas.dto.ActorSimpleDTO;
 import com.salesianos.dam.gestion_peliculas.dto.EditActorDTO;
-import com.salesianos.dam.gestion_peliculas.model.Actor;
-import com.salesianos.dam.gestion_peliculas.repository.ActorRepository;
 import com.salesianos.dam.gestion_peliculas.service.ActorService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

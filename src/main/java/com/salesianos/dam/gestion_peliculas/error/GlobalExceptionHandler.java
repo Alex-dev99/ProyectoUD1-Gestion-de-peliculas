@@ -2,14 +2,21 @@ package com.salesianos.dam.gestion_peliculas.error;
 
 import com.salesianos.dam.gestion_peliculas.error.alreadyExists.EntityAlreadyExistsException;
 import com.salesianos.dam.gestion_peliculas.error.notFound.EntityNotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ProblemDetail;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.ElementKind;
+import jakarta.validation.Path;
+import org.springframework.http.*;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.net.URI;
+import java.util.List;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {

@@ -5,6 +5,7 @@ import com.salesianos.dam.gestion_peliculas.model.Director;
 import com.salesianos.dam.gestion_peliculas.model.Pelicula;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 public record PeliculaResponseDTO(

@@ -1,5 +1,7 @@
 package com.salesianos.dam.gestion_peliculas.dto;
 
+import com.salesianos.dam.gestion_peliculas.model.Director;
+
 public record DirectorSimpleDTO(
 
         Long id,

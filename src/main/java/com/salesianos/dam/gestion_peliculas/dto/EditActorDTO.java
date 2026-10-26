@@ -1,6 +1,7 @@
 package com.salesianos.dam.gestion_peliculas.dto;
 
 import com.salesianos.dam.gestion_peliculas.model.Actor;
+import jakarta.validation.constraints.NotBlank;
 
 public record EditActorDTO(
 

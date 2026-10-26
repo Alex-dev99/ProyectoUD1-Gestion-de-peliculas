@@ -2,8 +2,6 @@ package com.salesianos.dam.gestion_peliculas.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import java.time.LocalDate;
-import java.time.Period;
 import java.time.Year;
 
 public class DirectorMayorDeEdadValidator implements ConstraintValidator<DirectorMayorDeEdad, Integer> {
